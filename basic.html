@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>url shortener</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="logic.js"></script>
+</head>
+<body>
+    <h1>url shortener</h1>
+    <form>
+        <div>
+            <label for="long-url">enter your long url:</label>
+            <input type="text" name="long-url" id="long-url">
+        </div>
+        
+        <div>
+            <label for="custom-name">custom name if you like:</label>
+            <input type="text" name="custom-name" id="custom-name">
+        </div>
+
+        <div>
+            <button type="submit">shorten it</button>
+        </div>
+    </form>
+
+    <div>
+        <h3>here is your shortened url tadah :3</h3>
+        <p id="shortened-url"></p>
+    </div>
+</body>
+</html>
