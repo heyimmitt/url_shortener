@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 import random
 import string
 from pydantic import BaseModel
@@ -12,6 +13,13 @@ app = FastAPI()
 # database and redirects to that site
 
 db = {}
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = ["*"],
+    allow_methods = ["*"],
+    allow_headers = ["*"],
+)
 
 class URLRequest(BaseModel):
     long_url: str
