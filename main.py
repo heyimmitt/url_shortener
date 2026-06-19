@@ -1,10 +1,28 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import declarative_base
+
 import random
 import string
 from pydantic import BaseModel
 
 app = FastAPI()
+
+DATABASE_URL = "sqlite:///./urls.db"
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+
+Base = declarative_base()
+
+class URL(Base): 
+    __tablename__ = "urls"
+    id = Column(Integer, primary_key=True, index=True)
+    slug = Column(String, primary_key=True, index=True)
+    long_url = Column(String)
+
+
+Base.metadata.create_all(bind=engine)
 
 # this is all the routes the application will have
 # when the user send a link to the backend, the backend will make the slug 
