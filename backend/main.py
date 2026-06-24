@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
@@ -43,8 +44,6 @@ def get_db():
 # when the user clicks on a shortened url, the application fetches the long url from the
 # database and redirects to that site
 
-# db = {}
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins = ["*"],
@@ -68,6 +67,7 @@ def shorten_url(url: URLRequest, db: Session = Depends(get_db)):
     slug = url.custom_url.strip() if url.custom_url else make_slug(8)
 
     existing = db.query(URL).filter(URL.slug == slug).first()
+    # print(existing)
     if existing:
         raise HTTPException(status_code=400, detail="shortened url already exists")
     
@@ -77,3 +77,11 @@ def shorten_url(url: URLRequest, db: Session = Depends(get_db)):
 
     return {"shortened_url": f"http://localhost:8000/{slug}"}
 
+@app.get("/{slug}")
+def get_longurl(slug: str, db: Session = Depends(get_db)):
+    exisisting = db.query(URL).filter(URL.slug == slug).first()
+    
+    if not exisisting:
+        raise HTTPException(status_code=404, detail="url not found")    
+    else:
+        return RedirectResponse(url = exisisting.long_url)

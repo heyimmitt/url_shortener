@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	form.addEventListener('submit', async (e) => {
 		e.preventDefault();
-		console.log('Form submitted, default prevented');
+		// console.log('Form submitted, default prevented');
 
 		const url = longUrl.value.trim();
 		if (!url) {
