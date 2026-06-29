@@ -11,8 +11,8 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-DATABASE_URL = "sqlite:///./urls.db"
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+DATABASE_URL = "postgresql://ithsim03:3rdaugust2006@localhost/urlshortener"
+engine = create_engine(DATABASE_URL)
 
 Base = declarative_base()
 
