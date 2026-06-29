@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	form.addEventListener('submit', async (e) => {
 		e.preventDefault();
-		
+
 		const url = longUrl.value.trim();
 		if (!url) {
 			output.innerHTML = 'Please enter a URL.';
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		try {
-			const response = await fetch("http://localhost:8000/shorten", {
+			const response = await fetch("https://url-shortener-1vlw.onrender.com/shorten", {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
