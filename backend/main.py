@@ -79,7 +79,7 @@ def shorten_url(url: URLRequest, db: Session = Depends(get_db)):
     db.add(new_entry)
     db.commit()
 
-    return {"shortened_url": f"https://meenylink.netlify.app/{slug}"}
+    return {"shortened_url": f"https://url-shortener-1vlw.onrender.com/{slug}"}
 
 @app.get("/{slug}")
 def get_longurl(slug: str, db: Session = Depends(get_db)):
