@@ -4,10 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	const customName = document.getElementById('custom-name');
 	const output = document.getElementById('shortened-url');
 
-	// function makeSlug() {
-	// 	return Math.random().toString(36).slice(2, 8);
-	// }
-
 	form.addEventListener('submit', async (e) => {
 		e.preventDefault();
 		// console.log('Form submitted, default prevented');
