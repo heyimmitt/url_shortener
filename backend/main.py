@@ -5,13 +5,17 @@ from fastapi.responses import RedirectResponse
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
 
+import os
 import random
 import string
 from pydantic import BaseModel
 
+from dotenv import load_dotenv
+load_dotenv()
+
 app = FastAPI()
 
-DATABASE_URL = "postgresql://ithsim03:3rdaugust2006@localhost/urlshortener"
+DATABASE_URL = os.environ.get("DATABASE_URL")
 engine = create_engine(DATABASE_URL)
 
 Base = declarative_base()
